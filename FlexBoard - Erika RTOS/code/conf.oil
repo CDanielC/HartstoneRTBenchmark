@@ -1,0 +1,336 @@
+CPU mySystem {
+
+	OS myOs {
+		EE_OPT = "DEBUG";
+		
+		LDFLAGS = "-lm";
+		CPU_DATA = PIC30 {
+			APP_SRC = "code.c";
+			APP_SRC = "globals.c";
+			APP_SRC = "tasks.c";
+			APP_SRC = "whetstone.c";
+			APP_SRC = "nutsbolts.c";
+			APP_SRC = "base_serial.c";
+			APP_SRC = "HWConfig.c";
+			MULTI_STACK = TRUE;
+			ICD2 = TRUE;
+		};
+
+		MCU_DATA = PIC30 {
+			MODEL = PIC33FJ256MC710;
+		};
+		
+		BOARD_DATA = EE_FLEX {
+			USELEDS = TRUE;
+			TYPE = DEMO {
+				OPTIONS = ALL;
+			};
+		};
+		
+		STATUS = EXTENDED;
+		KERNEL_TYPE = ECC1;
+
+		EE_OPT = "__ADD_LIBS__";
+		LIB = ENABLE {
+			NAME = "CONSOLE";
+		};	
+		
+		EE_OPT = "__ADD_LIBS__";
+		
+		STATUS = EXTENDED;
+		STARTUPHOOK = FALSE;
+		ERRORHOOK = TRUE;
+		SHUTDOWNHOOK = FALSE;
+		PRETASKHOOK = TRUE;
+		//POSTTASKHOOK = TRUE;
+		USEGETSERVICEID = FALSE;
+		USEPARAMETERACCESS = FALSE;
+		USERESSCHEDULER = FALSE;
+
+		KERNEL_TYPE = ECC1;
+		EE_OPT = "__OO_STARTOS_OLD__";
+
+		
+		LIB = ENABLE {
+			NAME = "CONSOLE";
+		};	
+		EE_OPT = "USE_CONSOLE";
+		EE_OPT = "USE_CONSOLE_SERIAL";
+		EE_OPT = "__USE_UART__";
+		
+	};
+
+	COUNTER myCounter {
+        MINCYCLE = 2;
+		MAXALLOWEDVALUE = 20000 ;
+        TICKSPERBASE = 1;
+    };
+
+	ALARM AlarmTask1 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = Task1; };
+	};
+	
+	ALARM AlarmTask2 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = Task2; };
+	};
+	
+	ALARM AlarmTask3 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = Task3; };
+	};
+	
+	ALARM AlarmTask4 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = Task4; };
+	};
+	
+	ALARM AlarmTask5 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = Task5; };
+	};
+	
+	ALARM AlarmSuper {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = SuperTask; };
+	};
+	
+	
+	
+	TASK SuperTask {
+		PRIORITY = 8;   /* Highest priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK Task1 {
+		PRIORITY = 1;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK Task2 {
+		PRIORITY = 2;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK Task3 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK Task4 {
+		PRIORITY = 4;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK Task5 {
+		PRIORITY = 5;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	/* New Tasks for the fourth experiment */
+	ALARM AlarmTaskA1 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA1; };
+	};
+	
+	ALARM AlarmTaskA2 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA2; };
+	};
+	
+	ALARM AlarmTaskA3 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA3; };
+	};
+	
+	ALARM AlarmTaskA4 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA4; };
+	};
+	
+	ALARM AlarmTaskA5 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA5; };
+	};
+	
+	ALARM AlarmTaskA6 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA6; };
+	};
+	
+	ALARM AlarmTaskA7 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA7; };
+	};
+	
+	ALARM AlarmTaskA8 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA8; };
+	};
+	
+	ALARM AlarmTaskA9 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA9; };
+	};
+	
+	ALARM AlarmTaskA10 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA10; };
+	};
+	
+	ALARM AlarmTaskA11 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA11; };
+	};
+	
+	ALARM AlarmTaskA12 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA12; };
+	};
+	
+	ALARM AlarmTaskA13 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA13; };
+	};
+	
+	ALARM AlarmTaskA14 {
+		COUNTER = myCounter;
+		ACTION = ACTIVATETASK { TASK = TaskA14; };
+	};
+
+	
+	TASK TaskA1 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA2 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA3 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA4 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA5 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA6 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA7 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA8 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA9 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA10 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA11 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA12 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA13 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+	TASK TaskA14 {
+		PRIORITY = 3;   /* Low priority */
+		AUTOSTART = FALSE;
+		STACK = SHARED;
+		ACTIVATION = 1;    /* only one pending activation */
+		SCHEDULE = FULL;
+	};
+	
+
+	/* */
+};
+
